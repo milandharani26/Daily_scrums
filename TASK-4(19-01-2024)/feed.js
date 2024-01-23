@@ -2,7 +2,7 @@ var users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
 
 function data() {
 
-    var use = ""
+    
     users.forEach(user => {
         console.log(user);
         document.getElementById('userfeed').innerHTML += `<div class="card" style="width: 18rem;">

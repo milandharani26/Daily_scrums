@@ -82,11 +82,6 @@ function registerUser(event) {
 
         console.log(users);
 
-
-        users.forEach(function(user){
-            console.log(user.username);
-        })
-
     }
 
 
@@ -125,7 +120,6 @@ function isValidEmail(email) {
     var emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailValidation.test(email);
 }
-
 
 
 
