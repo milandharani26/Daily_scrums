@@ -90,6 +90,18 @@ function registerUser(event) {
     }
 
 
+    //at active hide the errors
+    document.getElementById('username').addEventListener("click",function(){
+
+        document.getElementById('usernameError').textContent = "";
+        document.getElementById('emailError').textContent = "";
+        document.getElementById('phoneNumberError').textContent = "";
+        document.getElementById('passwordError').textContent = "";
+        document.getElementById('confirmError').textContent = "";
+
+    })
+
+
 
 
 }
@@ -116,13 +128,7 @@ function isValidEmail(email) {
 
 
 
-function data(){
 
-    document.getElementById('userfeed').innerHTML = "how are you";
-    
-}
-
-window.onload = data();
 
 
 

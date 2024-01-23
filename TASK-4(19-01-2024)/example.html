@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: grid;
+            grid-gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .gender{
+            display: flex;
+            gap: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #totalEntries {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Information Form</h2>
+
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required pattern="[A-Za-z ]+" title="Only letters and spaces are allowed">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+
+            <label>Gender:</label>
+            <div class="gender">
+                <div>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="gender" value="female" required>
+                    <label for="female">Female</label>
+                </div>
+            </div>
+
+            <label for="hobbies">Hobbies:</label>
+            <div>
+                <input type="checkbox" id="dancing" name="hobbies" value="dancing">
+                <label for="dancing">Dancing</label>
+                <input type="checkbox" id="fishing" name="hobbies" value="fishing">
+                <label for="fishing">Fishing</label>
+                <input type="checkbox" id="painting" name="hobbies" value="painting">
+                <label for="painting">Painting</label>
+            </div>
+
+            <label for="htmlKnowledge">HTML Knowledge (0-10):</label>
+            <input type="range" id="htmlKnowledge" name="htmlKnowledge" min="0" max="10">
+
+            <label for="cssKnowledge">CSS Knowledge (0-10):</label>
+            <input type="range" id="cssKnowledge" name="cssKnowledge" min="0" max="10">
+
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <p id="totalEntries">Total Entries: <span id="count">0</span></p>
+    </div>
+
+    <script>
+        function submitForm() {
+            
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var hobbies = document.querySelectorAll('input[name="hobbies"]:checked');
+            var htmlKnowledge = document.getElementById("htmlKnowledge").value;
+            var cssKnowledge = document.getElementById("cssKnowledge").value;
+
+            
+            if (!name || !name.match(/[A-Za-z ]+/)) {
+                alert("Please enter a valid name (letters and spaces only).");
+                return;
+            }
+
+            if (!email) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (!mobile || !mobile.match(/^\d{10}$/)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return;
+            }
+
+            if (!gender) {
+                alert("Please select a gender.");
+                return;
+            }
+
+            if (hobbies.length === 0) {
+                alert("Please select at least one hobby.");
+                return;
+            }
+
+            
+            var user = {
+                name: name,
+                email: email,
+                mobile: mobile,
+                gender: gender.value,
+                hobbies: Array.from(hobbies).map(item => item.value),
+                htmlKnowledge: htmlKnowledge,
+                cssKnowledge: cssKnowledge
+            };
+
+            
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            
+            var count = document.getElementById("count");
+            count.textContent = users.length;
+
+            alert("Form submitted successfully!");
+        }
+    </script>
+</body>
+</html>
