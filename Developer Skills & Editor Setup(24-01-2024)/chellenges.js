@@ -1,3 +1,5 @@
+
+"use strict"
 /*
 TEST DATA 1: [17, 21, 23]
 TEST DATA 2: [12, 5, -5, 0, 4]
@@ -31,3 +33,28 @@ const printForecast = function (arr) {
   console.log('...' + str);
 };
 printForecast(data1);
+
+
+
+// using while loop
+// const printForecast = function(arr){
+//   let i = 0;
+//   let str = "";
+
+//   while(i<arr.length){
+//     str += `${arr[i]}ºC in ${i + 1} days ... `;
+//     i++;
+//   }
+//   console.log("..." + str);
+// }
+// printForecast(data1);
+
+
+
+// using map
+// const str = data1.map((elem, i) => {
+//   return `${elem}ºC in ${[i]} days ... `;
+// })
+
+// console.log(str);
+

@@ -72,7 +72,7 @@ function calAge1(birthyear) {
       return this.age;
     },
   
-    getSummary: function () {
+    getSummary: function() {
       return `${this.firstName} is ${this.calcAge()}-year old ${
         this.job
       }, and he hase ${this.hasDeiversLicence ? "a" : "no"} driver's licence`;
@@ -87,8 +87,19 @@ function calAge1(birthyear) {
   //console.log(milan.age)    //3 // but to use this you have to use calAge method onece
   
   // "milan is 21-years old MERN DEVELOPER, and he has a driver's licence"
-  // console.log(milan.getSummary());
+
+  console.log(milan.getSummary());
   
+
+
+
+
+
+
+
+
+
+
   //*  for loop
   const arr = [
     "milan",

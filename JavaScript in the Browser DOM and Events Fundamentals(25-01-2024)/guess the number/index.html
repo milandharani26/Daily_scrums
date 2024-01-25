@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Guess The number range!</h1>
+        <!-- <div class="number">?</div> -->
+      </header>
+      
+      <main>
+            
+               <div>
+                <section class="game-range">
+                    <div>
+                      <label for="">Lower range</label>
+                      <input type="number" placeholder="enter lower range" name="low" id="lower">
+                    </div>
+          
+                    <div>
+                      <label for="">Higher range</label>
+                      <input type="number" placeholder="enter high range" name="high" id="higher">
+                    </div>
+          
+                </section>
+
+                <button id="btn" onclick="handleGame(event)">submit</button>
+                <a href="./game.html">Game page</a>
+
+                <span id="test"></span>
+               </div>
+
+
+                
+                <!-- <a href="./game.html"><input type="submit" id="submit">Submit</a> -->
+            
+      </main>
+
+      <script src="script.js"></script>
+</body>
+</html>

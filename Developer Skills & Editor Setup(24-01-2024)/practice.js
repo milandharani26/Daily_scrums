@@ -81,24 +81,23 @@ console.log(amplitute);
 
 // learn debugging from here
 
-const measurekelvin = function(){
+const measurekelvin = function () {
+  const measurement = {
+    type: "temp",
+    unit: "celsius",
 
-    const measurement = {
-        type:"temp",
-        unit:"celsius",
+    // c) FIX
+    // value : Number(prompt("degree celsius : ")),
+    value: 10,
+  };
 
-        // c) FIX
-        // value : Number(prompt("degree celsius : ")),
-        value:10,
-    };
+  // B) FIND
+  console.table(measurement);
 
-    // B) FIND
-    console.table(measurement);
+  const kelvin = measurement.value + 273;
 
-    const kelvin = measurement.value + 273;
-
-    return kelvin;
-}
+  return kelvin;
+};
 
 // A) IDENTIFY
 console.log(measurekelvin());
