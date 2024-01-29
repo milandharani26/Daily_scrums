@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Modal window</title>
-  </head>
-  <body>
-    <button class="show-modal">Show modal 1</button>
-    <button class="show-modal">Show modal 2</button>
-    <button class="show-modal">Show modal 3</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <div class="modal hidden">
-      <button class="close-modal">&times;</button>
-      <h1>I'm a modal window 😍</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+    <div class='container'>
+
+        
+            <button class="btn">ShowModel 1</button>
+            <button class="btn">ShowModel 2</button>
+            <button class="btn">ShowModel 3</button>
+        
+
+        <div class="model hidden">
+            <button class="close">&times;</button>
+            <h1>I'm a modal window 😍</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis enim laboriosam expedita eligendi in aspernatur dolorem nobis magnam, dolorum id nostrum veniam libero nulla quo aliquam! Ipsam vitae maiores enim sit, exercitationem, odio dignissimos error reprehenderit magnam placeat repudiandae labore?</p>
+        </div>
+
+        <div class="overlay hidden"></div>
+
     </div>
-    <div class="overlay hidden"></div>
-
+    
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
