@@ -24,14 +24,11 @@
           placeholder="Title"
           name="title"
         />
-        <label for="floatingInputUsername" id="username">Title</label>
-        <span id="usernameError" class="error"></span><br />
+        <label for="floatingInputUsername">Title</label>
+        <span id="titleError" class="error"></span><br />
       </div>
 
       <div class="form-floating mb-3">
-
-        
-        <!-- <textarea name="description"  class="form-control" id="description" cols="30" rows="10" placeholder="description"></textarea> -->
         <input
           type="text"
           class="form-control"
@@ -39,8 +36,8 @@
           placeholder="description"
           name="description"
         />
-        <label for="floatingInputUsername" id="username">description</label>
-        <span id="usernameError" class="error"></span><br />
+        <label for="floatingInputUsername">Description</label>
+        <span id="descriptionError" class="error"></span><br />
       </div>
 
       <div class="center">
@@ -48,12 +45,22 @@
       </div>
     </div>
 
+    
+
+    <hr>
+
+    <div class="search">
+      <label for="search"><b>Search:</b></label>
+      <input type="text" id="search" oninput="filterTodos()" placeholder="Search by title or description">
+      <button class="btn btn-primary" id="sortBtn"onclick="sorting()" value="ascending"><span id="sortingValue">ascending</span></button>
+    </div>
+
     <div id="list" onclick=""></div>
 
     <div class="model hidden">
       <button class="close">&times;</button>
       <div id="model-description">
-        <h1>I'm a modal window 😍</h1>
+        <h1>I'm a modal window</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
           enim laboriosam expedita eligendi in aspernatur dolorem nobis magnam,
@@ -78,8 +85,8 @@
             placeholder="Title"
             name="title"
           />
-          <label for="floatingInputUsername" id="username">Title</label>
-          <span id="usernameError" class="error"></span><br />
+          <label for="floatingInputUsername">Title</label>
+          <span id="titleError" class="error"></span><br />
         </div>
 
         <div class="form-floating mb-3">
@@ -90,8 +97,8 @@
             placeholder="description"
             name="description"
           />
-          <label for="floatingInputUsername" id="username">description</label>
-          <span id="usernameError" class="error"></span><br />
+          <label for="floatingInputUsername">description</label>
+          <span id="descriptionError" class="error"></span><br />
         </div>
 
         <div class="center">

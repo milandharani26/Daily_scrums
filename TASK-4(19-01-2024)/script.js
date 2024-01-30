@@ -97,8 +97,6 @@ function registerUser(event) {
     })
 
 
-
-
 }
 
 function updateRegisteredUserCount() {
