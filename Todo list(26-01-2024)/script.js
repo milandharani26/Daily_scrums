@@ -5,14 +5,14 @@ function displayError(id, msg) {
 //!add todo
 function todo(e) {
   e.preventDefault();
-  var title = document.getElementById("title").value.trim();
-  var description = document.getElementById("description").value.trim();
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
 
   if (title.length !== 0 && description.length !== 0) {
-    var currentDate = new Date();
+    const currentDate = new Date();
     const timestamp = currentDate.getTime();
 
-    var options = {
+    const options = {
       day: "numeric",
       month: "numeric",
       year: "numeric",
@@ -22,7 +22,7 @@ function todo(e) {
       hour12: true, // Use 12-hour time format
     };
 
-    var formattedDateTime = currentDate.toLocaleString("en-US", options);
+    const formattedDateTime = currentDate.toLocaleString("en-US", options);
 
     const todoData = {
       title: title,
@@ -32,7 +32,7 @@ function todo(e) {
       checked: false,
     };
 
-    var todos = JSON.parse(localStorage.getItem("todos")) || [];
+    const todos = JSON.parse(localStorage.getItem("todos")) || [];
     todos.push(todoData);
     localStorage.setItem("todos", JSON.stringify(todos));
     location.reload();
@@ -58,21 +58,23 @@ document.getElementById("description").addEventListener("click", function () {
   document.getElementById("descriptionError").textContent = "";
 });
 
-var todos = JSON.parse(localStorage.getItem("todos")) || [];
+const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 function listData() {
-
-
   todos.forEach((item, index) => {
     console.log(item);
     document.getElementById("list").innerHTML += `
     <div class="todo-list" id="list-items">
-    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id})" ${item.checked ? "checked" : ""}>
+    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id
+      })" ${item.checked ? "checked" : ""}>
         <h3>${item.title}</h3>
         <div class="buttens"> 
-            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id})">Update</button>
-            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id})">Delete </button>
-            <button class="btn btn-primary description-model" onclick="showModel(${item.id})">description</button>
+            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id
+      })">Update</button>
+            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id
+      })"><i class="ri-delete-bin-fill"></i></button>
+            <button class="btn btn-primary description-model" onclick="showModel(${item.id
+      })">description</button>
         </div>
     </div> `;
   });
@@ -81,125 +83,146 @@ function listData() {
 window.onload = listData();
 // listData();
 
-
-
 //! this is copy of localStorage for ascending and decending.
-var todoForSort = JSON.parse(localStorage.getItem("todos")) || [];
+const todoForSort = JSON.parse(localStorage.getItem("todos")) || [];
 
 //! sorting
-function sorting(){
-const sortStatus = document.getElementById('sortBtn').value
+function sorting() {
+  const sortStatus = document.getElementById("sortBtn").value;
 
-//!ascending
-if(sortStatus == "ascending"){
-  todoForSort.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
-  document.getElementById("list").innerHTML = "";
-  todoForSort.forEach((item, index) => {
-    // console.log(item);
-    document.getElementById("list").innerHTML += `
+  //!ascending
+  if (sortStatus == "ascending") {
+    todoForSort.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    document.getElementById("list").innerHTML = "";
+    todoForSort.forEach((item, index) => {
+      // console.log(item);
+      document.getElementById("list").innerHTML += `
     <div class="todo-list" id="list-items">
-    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id})" ${item.checked ? "checked" : ""}>
+    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id
+        })" ${item.checked ? "checked" : ""}>
         <h3>${item.title}</h3>
         <div class="buttens"> 
-            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id})">Update</button>
-            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id})">Delete </button>
-            <button class="btn btn-primary description-model" onclick="showModel(${item.id})">description</button>
+            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id
+        })">Update</button>
+            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id
+        })"><i class="ri-delete-bin-fill"></i></button>
+            <button class="btn btn-primary description-model" onclick="showModel(${item.id
+        })">description</button>
         </div>
     </div> `;
-  });
+    });
 
-  document.getElementById('sortBtn').value = "decending";
-  document.getElementById("sortingValue").innerHTML = "decending";
-}
-//!decending
-else if(sortStatus=="decending"){
-  document.getElementById("list").innerHTML = "";
-  todoForSort.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
-  todoForSort.reverse();
-  todoForSort.forEach((item, index) => {
-    console.log(item);
-    document.getElementById("list").innerHTML += `
-    <div class="todo-list" id="list-items">
-    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id})" ${item.checked ? "checked" : ""}>
-        <h3>${item.title}</h3>
-        <div class="buttens"> 
-            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id})">Update</button>
-            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id})">Delete </button>
-            <button class="btn btn-primary description-model" onclick="showModel(${item.id})">description</button>
-        </div>
-    </div> `;
-  });
-
-  console.log(todoForSort);
-
-  document.getElementById('sortBtn').value = "original";
-  document.getElementById("sortingValue").innerHTML = "original";
-}
-
-else if (sortStatus == "original"){
-  document.getElementById("list").innerHTML = "";
-
-  todos.forEach((item, index) => {
-    console.log(item);
-    document.getElementById("list").innerHTML += `
-    <div class="todo-list" id="list-items">
-    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id})" ${item.checked ? "checked" : ""}>
-        <h3>${item.title}</h3>
-        <div class="buttens"> 
-            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id})">Update</button>
-            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id})">Delete </button>
-            <button class="btn btn-primary description-model" onclick="showModel(${item.id})">description</button>
-        </div>
-    </div> `;
-  });
-
-  document.getElementById('sortBtn').value = "ascending";
-  document.getElementById("sortingValue").innerHTML = "ascending";
+    document.getElementById("sortBtn").value = "decending";
+    document.getElementById("sortingValue").innerHTML = "decending";
   }
- 
-}
+  //!decending
+  else if (sortStatus == "decending") {
+    document.getElementById("list").innerHTML = "";
+    todoForSort.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    todoForSort.reverse();
+    todoForSort.forEach((item, index) => {
+      console.log(item);
+      document.getElementById("list").innerHTML += `
+    <div class="todo-list" id="list-items">
+    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id
+        })" ${item.checked ? "checked" : ""}>
+        <h3>${item.title}</h3>
+        <div class="buttens"> 
+            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id
+        })">Update</button>
+            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id
+        })"><i class="ri-delete-bin-fill"></i></button>
+            <button class="btn btn-primary description-model" onclick="showModel(${item.id
+        })">description</button>
+        </div>
+    </div> `;
+    });
 
+    console.log(todoForSort);
+
+    document.getElementById("sortBtn").value = "original";
+    document.getElementById("sortingValue").innerHTML = "original";
+  } else if (sortStatus == "original") {
+    document.getElementById("list").innerHTML = "";
+
+    todos.forEach((item, index) => {
+      console.log(item);
+      document.getElementById("list").innerHTML += `
+    <div class="todo-list" id="list-items">
+    <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id
+        })" ${item.checked ? "checked" : ""}>
+        <h3>${item.title}</h3>
+        <div class="buttens"> 
+            <button class="btn btn-warning update-btn" onclick="updateUser(${item.id
+        })">Update</button>
+            <button class="btn btn-danger delete-btn" onclick="deleteUser(${item.id
+        })"><i class="ri-delete-bin-fill"></i></button>
+            <button class="btn btn-primary description-model" onclick="showModel(${item.id
+        })">description</button>
+        </div>
+    </div> `;
+    });
+
+    document.getElementById("sortBtn").value = "ascending";
+    document.getElementById("sortingValue").innerHTML = "ascending";
+  }
+}
 
 //!search
 // Function to filter todos based on search input
 function filterTodos() {
-  const searchInput = document.getElementById('search');
+  const searchInput = document.getElementById("search");
   // const filterText = searchInput.value;
   const filterText = searchInput.value.trim().toLowerCase();
-  const todos = JSON.parse(localStorage.getItem('todos')) || [];
-  const filteredTodos = todos.filter(todo =>
-    todo.title.toLowerCase().includes(filterText) || todo.description.toLowerCase().includes(filterText)
+  const todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+  const filteredTodos = todos.filter(
+    (todo) =>
+      Object.values(todo).some((value) => {
+
+        console.log(Object.values(todo).every(value=>console.log(value)))
+      return typeof value === "string" && value.toLowerCase().includes(filterText)
+      })
+
+    // todo.title.toLowerCase().includes(filterText) ||
+    // todo.description.toLowerCase().includes(filterText)
   );
+
   displayFilteredTodos(filteredTodos);
 }
 
-
 function displayFilteredTodos(filteredTodos) {
-  const todoListContainer = document.getElementById('list');
-  todoListContainer.innerHTML = '';
-  if(filteredTodos.length==0){
+  const todoListContainer = document.getElementById("list");
+  todoListContainer.innerHTML = "";
+  if (filteredTodos.length == 0) {
     todoListContainer.innerHTML = `<div>
-      <h1>Nothing found</h1>
+      <h1 class="center">Nothing Found</h1>
     </div>`;
-  }
+  } else {
+    filteredTodos.forEach((todo, index) => {
+      const listItem = document.createElement("li");
+      listItem.className = "todoItem";
 
-  else{
-  filteredTodos.forEach((todo, index) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'todoItem';
-
-    listItem.innerHTML = `<div class="todo-list" id="list-items">
-    <input type="checkbox" id="checkbox-${todo.id}" onclick="toggleCheckbox(${todo.id})" ${todo.checked ? "checked" : ""}>
+      listItem.innerHTML = `<div class="todo-list" id="list-items">
+    <input type="checkbox" id="checkbox-${todo.id}" onclick="toggleCheckbox(${todo.id
+        })" ${todo.checked ? "checked" : ""}>
         <h3>${todo.title}</h3>
         <div class="buttens"> 
-            <button class="btn btn-warning update-btn" onclick="updateUser(${todo.id})">Update</button>
-            <button class="btn btn-danger delete-btn" onclick="deleteUser(${todo.id})">Delete </button>
-            <button class="btn btn-primary description-model" onclick="showModel(${todo.id})">description</button>
+            <button class="btn btn-warning update-btn" onclick="updateUser(${todo.id
+        })">Update</button>
+            <button class="btn btn-danger delete-btn" onclick="deleteUser(${todo.id
+        })"><i class="ri-delete-bin-fill"></i></button>
+            <button class="btn btn-primary description-model" onclick="showModel(${todo.id
+        })">description</button>
         </div>
     </div>
     `;
-    todoListContainer.appendChild(listItem);
-  });
+      todoListContainer.appendChild(listItem);
+    });
   }
 }
 
@@ -210,7 +233,7 @@ const model = document.querySelector(".model");
 const overlay = document.querySelector(".overlay");
 const deleteBtn = document.querySelectorAll(".delete-btn");
 
-function showModel(todoid){
+function showModel(todoid) {
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let obj = todos.find((todoobj) => todoobj.id === todoid);
 
@@ -218,30 +241,28 @@ function showModel(todoid){
   overlay.classList.remove("hidden");
 
   document.getElementById("model-description").innerHTML = `
-      <h1>${obj.title} 😍</h1>
+      <h1>${obj.title}</h1>
       <p>${obj.description}</p>
       <p>${obj.dateTime}</p>
       `;
 
-      btnCloseModel.addEventListener("click", function () {
-        model.classList.add("hidden");
-        overlay.classList.add("hidden");
-      });
-      
-      overlay.addEventListener("click", function () {
-        model.classList.add("hidden");
-        overlay.classList.add("hidden");
-      });
-      
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && !model.classList.contains("hidden")) {
-          model.classList.add("hidden");
-          overlay.classList.add("hidden");
-        }
-      });
+  btnCloseModel.addEventListener("click", function () {
+    model.classList.add("hidden");
+    overlay.classList.add("hidden");
+  });
 
+  overlay.addEventListener("click", function () {
+    model.classList.add("hidden");
+    overlay.classList.add("hidden");
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !model.classList.contains("hidden")) {
+      model.classList.add("hidden");
+      overlay.classList.add("hidden");
+    }
+  });
 }
-
 
 //! delete todo
 function deleteUser(i) {
@@ -314,7 +335,7 @@ function updateStorage(i) {
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-  let obj = todos.find((o) => o.id === i);
+  let obj = todos.find((updateTodo) => updateTodo.id === i);
 
   todos.map((item) => {
     if (item.id === i) {
@@ -340,4 +361,3 @@ function toggleCheckbox(todoid) {
     }
   });
 }
-
