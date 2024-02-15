@@ -47,9 +47,7 @@ const poll = {
     console.log(answer);
 
     // Register answer
-    typeof answer === 'number' &&
-      answer < this.answers.length &&
-      this.answers[answer]++;
+    typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
 
     this.displayResults();
     this.displayResults('string');

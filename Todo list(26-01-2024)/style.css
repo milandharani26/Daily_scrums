@@ -115,3 +115,8 @@ body{
 .todoItem {
   list-style: none;
 }
+
+
+.cursor-move{
+  cursor:move;
+}

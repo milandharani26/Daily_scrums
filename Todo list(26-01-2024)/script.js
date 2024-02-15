@@ -64,7 +64,7 @@ function listData() {
   todos.forEach((item, index) => {
     console.log(item);
     document.getElementById("list").innerHTML += `
-    <div class="todo-list" id="list-items">
+    <div class="todo-list cursor-move" id=${item.id}  draggable="true" ondragstart="drag(event)">
     <input type="checkbox" id="checkbox-${item.id}" onclick="toggleCheckbox(${item.id
       })" ${item.checked ? "checked" : ""}>
         <h3>${item.title}</h3>
@@ -83,12 +83,32 @@ function listData() {
 window.onload = listData();
 // listData();
 
+
+//!drag
+function allowDrop(even) {
+  even.preventDefault();
+}
+
+function drag(even) {
+  console.log(even.target.id);
+  even.dataTransfer.setData("text", even.target.id);
+}
+
+function drop(even) {
+  even.preventDefault();
+  var fetchData = even.dataTransfer.getData("text");
+  even.target.appendChild(document.getElementById(fetchData));
+}
+
+
 //! this is copy of localStorage for ascending and decending.
 const todoForSort = JSON.parse(localStorage.getItem("todos")) || [];
 
 //! sorting
 function sorting() {
   const sortStatus = document.getElementById("sortBtn").value;
+
+  console.log(sortStatus);
 
   //!ascending
   if (sortStatus == "ascending") {
@@ -184,8 +204,8 @@ function filterTodos() {
     (todo) =>
       Object.values(todo).some((value) => {
 
-        console.log(Object.values(todo).every(value=>console.log(value)))
-      return typeof value === "string" && value.toLowerCase().includes(filterText)
+        console.log(Object.values(todo).every(value => console.log(value)))
+        return typeof value === "string" && value.toLowerCase().includes(filterText)
       })
 
     // todo.title.toLowerCase().includes(filterText) ||
